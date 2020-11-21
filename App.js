@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import React from "react";
+import { View } from "react-native";
+import { Provider } from "react-redux";
+import AddEntry from "./components/AddEntry";
+import { store } from "./redux/store";
+import History from "./components/History";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-export default function App() {
+const Tab = createBottomTabNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <View style={{ height: 20 }} />
+          <Tab.Navigator>
+            <Tab.Screen name="AddEntry" component={AddEntry} />
+            <Tab.Screen name="History" component={History} />
+          </Tab.Navigator>
+        </View>
+      </Provider>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
