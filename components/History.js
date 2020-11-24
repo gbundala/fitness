@@ -6,7 +6,6 @@ import { fetchCalenderResults } from "../utils/api";
 import { getDailyReminderValue, timeToString } from "../utils/helpers";
 import { Agenda } from "react-native-calendars";
 import { white } from "../utils/colors";
-import DateHeader from "./DateHeader";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import MetricCard from "./MetricCard";
 import { AppLoading } from "expo";
@@ -19,6 +18,7 @@ class History extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     console.log("called in Component Did Mount", timeToString());
+    console.log(this.props.navigation);
 
     fetchCalenderResults()
       .then((entries) => dispatch(receiveEntries(entries)))
@@ -60,19 +60,50 @@ class History extends Component {
     //       });
   }
 
-  renderItem = ({ today, ...metrics }, key) => (
-    <View style={styles.item}>
-      {today ? (
-        <View>
-          <Text style={styles.noDataText}>{today}</Text>
-        </View>
-      ) : (
-        <TouchableOpacity onPress={() => alert("Pressed!")}>
-          <MetricCard metrics={metrics} />
-        </TouchableOpacity>
-      )}
-    </View>
-  );
+  pressedDay;
+  onDayPressed = (day) => {
+    console.log("day pressed", day.dateString);
+    this.pressedDay = day;
+    console.log("this is pressed day value", this.pressedDay);
+  };
+
+  renderItem = (item, key) => {
+    // const { entries } = this.props;
+    // console.log("entries called", entries);
+    console.log("item is called", item);
+    console.log("key is called", this.pressedDay);
+    const { today, ...metrics } = item;
+    return (
+      <View style={styles.item}>
+        {today ? (
+          <View>
+            <Text style={styles.noDataText}>{today}</Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate("EntryDetail", {
+                entryId: "2020-11-21",
+              })
+            }
+          >
+            <MetricCard metrics={metrics} />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  };
+
+  renderDay = (day, item) => {
+    console.log("Day in RenderDay", day);
+    console.log("Item in RenderDay", item);
+
+    // return (
+    //   <View style={styles.item}>
+    //     <Text></Text>
+    //   </View>
+    // );
+  };
 
   renderEmptyDate = () => (
     <View style={styles.item}>
@@ -107,6 +138,7 @@ class History extends Component {
         items={entriesObject}
         renderItem={this.renderItem}
         renderEmptyDate={this.renderEmptyDate}
+        onDayPress={this.onDayPressed}
       />
     );
   }
