@@ -50,7 +50,11 @@ const Tab =
 
 const Home = () => {
   return (
-    <Tab.Navigator screenOptions={screenOptions} tabBarOptions={tabBarOptions}>
+    <Tab.Navigator
+      screenOptions={screenOptions}
+      tabBarOptions={tabBarOptions}
+      initialRouteName="History"
+    >
       <Tab.Screen name="Add Entry" component={AddEntry} />
       <Tab.Screen name="History" component={History} />
     </Tab.Navigator>

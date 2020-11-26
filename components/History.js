@@ -83,7 +83,7 @@ class History extends Component {
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate("EntryDetail", {
-                entryId: "2020-11-21",
+                entryId: "2020-11-26",
               })
             }
           >

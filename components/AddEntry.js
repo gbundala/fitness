@@ -16,6 +16,7 @@ import { purple, white } from "../utils/colors";
 import { addEntry } from "../redux/entry/entry.actions";
 import { add } from "react-native-reanimated";
 import { connect } from "react-redux";
+import { CommonActions } from "@react-navigation/native";
 
 const SubmitBtn = ({ onPress }) => {
   return (
@@ -88,9 +89,10 @@ class AddEntry extends Component {
       eat: 0,
     }));
 
-    //Navigate to Home
+    //Navigate to Home using NavigationActions
+    this.toHome();
 
-    //Save to 'DB' -- RN Async Storage used as abstract concept of the DB
+    //Update Async Storage: i.e.Save to 'DB' -- RN Async Storage used as abstract concept of the DB
     submitEntry({ key, entry });
 
     //Clear Local Notification
@@ -106,10 +108,13 @@ class AddEntry extends Component {
       })
     );
 
-    // Route to Home
-
     //Update 'DB'
     removeEntry(key);
+  };
+
+  toHome = () => {
+    const { navigation } = this.props;
+    navigation.dispatch(CommonActions.goBack());
   };
 
   render() {
