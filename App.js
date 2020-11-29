@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React from "react";
+import React, { Component } from "react";
 import { View, StatusBar, Text } from "react-native";
 import { Provider } from "react-redux";
 
@@ -13,6 +13,8 @@ import Constants from "expo-constants";
 import EntryDetail from "./components/EntryDetail";
 import Home from "./components/HomeScreen";
 import entryReducer from "./redux/entry/entry.reducer";
+import { render } from "react-dom";
+import { setLocalNotification } from "./utils/helpers";
 
 const FitnessStatusBar = ({ backgroundColor, ...props }) => {
   return (
@@ -31,42 +33,51 @@ const commonOptions = {
   },
 };
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <View style={{ flex: 1 }}>
-          <FitnessStatusBar backgroundColor={purple} barStyle="light-content" />
-          <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={commonOptions}
-          >
-            <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{
-                title: "Home",
-              }}
-            />
-            <Stack.Screen
-              name="EntryDetail"
-              component={EntryDetail}
-              options={({ route }) => {
-                const { entryId } = route.params;
-                const year = entryId.slice(0, 4);
-                const month = entryId.slice(5, 7);
-                const day = entryId.slice(8);
+class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
 
-                return {
-                  title: `${day}/${month}/${year}`,
-                };
-              }}
+  render() {
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <View style={{ flex: 1 }}>
+            <FitnessStatusBar
+              backgroundColor={purple}
+              barStyle="light-content"
             />
-          </Stack.Navigator>
-        </View>
-      </NavigationContainer>
-    </Provider>
-  );
-};
+            <Stack.Navigator
+              initialRouteName="Home"
+              screenOptions={commonOptions}
+            >
+              <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{
+                  title: "Home",
+                }}
+              />
+              <Stack.Screen
+                name="EntryDetail"
+                component={EntryDetail}
+                options={({ route }) => {
+                  const { entryId } = route.params;
+                  const year = entryId.slice(0, 4);
+                  const month = entryId.slice(5, 7);
+                  const day = entryId.slice(8);
+
+                  return {
+                    title: `${day}/${month}/${year}`,
+                  };
+                }}
+              />
+            </Stack.Navigator>
+          </View>
+        </NavigationContainer>
+      </Provider>
+    );
+  }
+}
 
 export default App;

@@ -26,15 +26,21 @@ class EntryDetail extends Component {
 
     return (
       <View style={styles.container}>
-        {metrics !== null && !metrics.today ? (
+        <Text> We're working on this feature! See you soon 😊</Text>
+
+        {/* FIXME: Fix this feature and set it live! */}
+        {/* {metrics !== null && !metrics.today ? (
           <MetricCard metrics={metrics} />
+          
         ) : (
           <Text>No data today!</Text>
         )}
         <TextButton onPress={this.reset} style={{ margin: 20 }}>
           {" "}
           RESET
-        </TextButton>
+        </TextButton> */}
+
+        {/* TODO: Create a sharing feature */}
         {/* <TextButton  style={{ margin: 20 }}>
           {" "}
           SHARE

@@ -14,7 +14,7 @@ const FitStepper = ({ max, unit, step, value, onIncrement, onDecrement }) => {
               styles.iosBtn,
               { borderTopRightRadius: 0, borderBottomRightRadius: 0 },
             ]}
-            onPress={onIncrement}
+            onPress={onDecrement}
           >
             <Entypo name="minus" size={30} color={purple} />
           </TouchableOpacity>
@@ -23,7 +23,7 @@ const FitStepper = ({ max, unit, step, value, onIncrement, onDecrement }) => {
               styles.iosBtn,
               { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
             ]}
-            onPress={onDecrement}
+            onPress={onIncrement}
           >
             <Entypo name="plus" size={30} color={purple} />
           </TouchableOpacity>
@@ -35,7 +35,7 @@ const FitStepper = ({ max, unit, step, value, onIncrement, onDecrement }) => {
               styles.androidBtn,
               { borderTopRightRadius: 0, borderBottomRightRadius: 0 },
             ]}
-            onPress={onIncrement}
+            onPress={onDecrement}
           >
             <FontAwesome name="minus" size={30} color={white} />
           </TouchableOpacity>
@@ -44,7 +44,7 @@ const FitStepper = ({ max, unit, step, value, onIncrement, onDecrement }) => {
               styles.androidBtn,
               { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
             ]}
-            onPress={onDecrement}
+            onPress={onIncrement}
           >
             <FontAwesome name="plus" size={30} color={white} />
           </TouchableOpacity>

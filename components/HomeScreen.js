@@ -7,6 +7,7 @@ import { purple, white } from "../utils/colors";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import AddEntry from "./AddEntry";
 import History from "./History";
+import Live from "./Live";
 
 const screenOptions = ({ route }) => ({
   tabBarIcon: ({ focused, color, size }) => {
@@ -16,6 +17,8 @@ const screenOptions = ({ route }) => ({
       iconName = focused ? "plus-square" : "plus-square";
     } else if (route.name === "History") {
       iconName = focused ? "ios-bookmarks" : "ios-bookmarks";
+    } else if (route.name === "Live") {
+      iconName = focused ? "ios-speedometer" : "ios-speedometer";
     }
 
     // You can return any component that you like here!
@@ -57,6 +60,7 @@ const Home = () => {
     >
       <Tab.Screen name="Add Entry" component={AddEntry} />
       <Tab.Screen name="History" component={History} />
+      <Tab.Screen name="Live" component={Live} />
     </Tab.Navigator>
   );
 };
