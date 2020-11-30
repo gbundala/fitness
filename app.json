@@ -2,11 +2,23 @@
   "name": "fitness",
   "displayName": "fitness",
   "expo": {
+    "sdkVersion": "39.0.0",
+    "orientation": "portrait",
     "name": "fitness",
+    "description": "Make your life a wonderful experience with fitness!",
     "slug": "fitness",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "icon": "https://maxcdn.icons8.com/Color/PNG/512/Sports/triathlon-512.png",
+    "notifications": {
+      "icon": "https://maxcdn.icons8.com/Color/PNG/512/Sports/triathlon-512.png"
+    },
+    "ios": {
+      "bundleIdentifier": "tech.fitness-tz.fitness",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "tech.fitness-tz.fitness",
+      "versionCode": 1
+    }
   }
 }
