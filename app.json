@@ -9,15 +9,12 @@
     "slug": "fitness",
     "version": "1.0.0",
     "icon": "https://maxcdn.icons8.com/Color/PNG/512/Sports/triathlon-512.png",
-    "notifications": {
-      "icon": "https://maxcdn.icons8.com/Color/PNG/512/Sports/triathlon-512.png"
-    },
     "ios": {
-      "bundleIdentifier": "tech.fitness-tz.fitness",
+      "bundleIdentifier": "tech.fitness.fitness",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "tech.fitness-tz.fitness",
+      "package": "tech.fitness_tz.fitness",
       "versionCode": 1
     }
   }
